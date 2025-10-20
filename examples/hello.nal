@@ -1,0 +1,4 @@
+# Simple nalgae program that uppercases input and adds punctuation
+def excited(x) = x | upper | append "!"
+
+it | trim | excited

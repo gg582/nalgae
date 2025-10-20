@@ -1,0 +1,69 @@
+def imports(x) = """
+    import QtQuick 6.5
+    import QtQuick.Controls 6.5
+""" | trim_indent
+
+def cpu_panel(x) = """
+    Row {
+        spacing: 12
+        Label { text: "CPU"; font.pixelSize: 16 }
+        ProgressBar { value: 0.68; Layout.fillWidth: true }
+    }
+""" | trim_indent
+
+def memory_panel(x) = """
+    Row {
+        spacing: 12
+        Label { text: "Memory"; font.pixelSize: 16 }
+        ProgressBar { value: 0.54; Layout.fillWidth: true }
+    }
+""" | trim_indent
+
+def network_panel(x) = """
+    Row {
+        spacing: 12
+        Label { text: "Network"; font.pixelSize: 16 }
+        ProgressBar { value: 0.42; Layout.fillWidth: true }
+    }
+""" | trim_indent
+
+def actions(x) = """
+    GroupBox {
+        title: "Actions"
+        Layout.fillWidth: true
+        Column {
+            spacing: 8
+            anchors.fill: parent
+            anchors.margins: 12
+            Button { text: "Open Console" }
+            Button { text: "Restart Service" }
+            Button { text: "Shutdown" }
+        }
+    }
+""" | trim_indent
+
+{
+  imports ""
+  ""
+  """
+  ApplicationWindow {
+      id: window
+      width: 520
+      height: 360
+      visible: true
+      title: "Nalgae Qt Dashboard"
+
+      Column {
+          anchors.fill: parent
+          anchors.margins: 24
+          spacing: 18
+  """ | trim_indent
+  cpu_panel "" | indent "        "
+  memory_panel "" | indent "        "
+  network_panel "" | indent "        "
+  actions "" | indent "        "
+  """
+      }
+  }
+  """ | trim_indent
+}
